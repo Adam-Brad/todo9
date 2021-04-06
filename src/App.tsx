@@ -15,6 +15,11 @@ function App() {
         setList([additionalTodo, ...list])
     };
 
+    const deleteFromList = (index: number) => {
+      const listAfterDelete = list.filter((todo: Todo, i: number) => i !== index );
+      setList(listAfterDelete);
+    };
+
     return (
     <div className="App">
       <Input
@@ -22,6 +27,7 @@ function App() {
       />
       <List
         list={list}
+        deleteFromList={deleteFromList}
       />
     </div>
   );
