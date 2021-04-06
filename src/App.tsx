@@ -12,6 +12,23 @@ function App() {
     });
 
     const addToList = (task: string) => {
+        if (!task.length) {
+            alert("Blank todos not allowed");
+            return;
+        }
+
+        const hasDuplicate = list.reduce((haveSeenDuplicate: boolean, todo: Todo) => {
+            if (task === todo.text) {
+                haveSeenDuplicate = true;
+            }
+            return haveSeenDuplicate;
+        }, false)
+
+        if (hasDuplicate) {
+            alert("Duplicate");
+            return;
+        }
+
         const additionalTodo: Todo = {
             text: task,
             isCompleted: false
