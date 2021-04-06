@@ -41,14 +41,14 @@ export default function Item(props: ItemProps) {
     return (
         <>
             {isEditable ?
-                <input onChange={handleEditChange} value={currentTask.text}/>
+                <input data-testid={`${todo.text}-input`} onChange={handleEditChange} value={currentTask.text}/>
             :
                 <li key={index} className={itemClasses}>{todo.text}</li>
             }
 
             <button data-testid={`${todo.text}-delete`} onClick={removeFromList}>Delete</button>
             <button data-testid={`${todo.text}-mark`} onClick={toggleCompleted}>{markButtonText}</button>
-            <button onClick={editOrSaveAction}>{editOrSaveButtonText}</button>
+            <button data-testid={`${todo.text}-edit`} onClick={editOrSaveAction}>{editOrSaveButtonText}</button>
         </>
     );
 }
