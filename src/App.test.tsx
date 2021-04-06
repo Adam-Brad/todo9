@@ -79,3 +79,27 @@ test('editing and saving a todo changes the text', () => {
     expect(getMilkText).toBeInTheDocument();
     expect(getBreadText).not.toBeInTheDocument();
 });
+
+test('adding a blank todo throws error', () => {
+    const { getByText, getByLabelText } = render(<App />);
+    const input = getByLabelText("Add a new todo");
+    const addButton = getByText("Click to Add");
+    window.alert = jest.fn();
+
+    addAToDo(input, "", addButton);
+
+    expect(window.alert).toHaveBeenCalledTimes(1);
+});
+
+test('adding a duplicate todo throws error', () => {
+    const { getByText, getByLabelText } = render(<App />);
+    const input = getByLabelText("Add a new todo");
+    const addButton = getByText("Click to Add");
+    window.alert = jest.fn();
+
+    addAToDo(input, "get bread", addButton);
+    addAToDo(input, "get bread", addButton);
+
+    expect(window.alert).toHaveBeenCalledTimes(1);
+});
+
