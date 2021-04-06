@@ -36,7 +36,7 @@ test('clicking delete button removes correct todo', () => {
 });
 
 test('marking a todo changes the button text', () => {
-    const { getByText, getByLabelText, queryByText, getByTestId } = render(<App />);
+    const { getByText, getByLabelText, getByTestId } = render(<App />);
     const input = getByLabelText("Add a new todo");
     const addButton = getByText("Click to Add");
 
@@ -50,7 +50,7 @@ test('marking a todo changes the button text', () => {
 });
 
 test('edit/save button toggles text', () => {
-    const { getByText, getByLabelText, queryByText, getByTestId } = render(<App />);
+    const { getByText, getByLabelText, getByTestId } = render(<App />);
     const input = getByLabelText("Add a new todo");
     const addButton = getByText("Click to Add");
 
