@@ -34,3 +34,17 @@ test('clicking delete button removes correct todo', () => {
 
     expect(getBreadText).not.toBeInTheDocument();
 });
+
+test('marking a todo changes the button text', () => {
+    const { getByText, getByLabelText, queryByText, getByTestId } = render(<App />);
+    const input = getByLabelText("Add a new todo");
+    const addButton = getByText("Click to Add");
+
+    addAToDo(input, "get bread", addButton);
+
+    const getBreadMarkButton = getByTestId("get bread-mark");
+    expect(getBreadMarkButton.innerHTML).toBe("Mark");
+    fireEvent.click(getBreadMarkButton);
+
+    expect(getBreadMarkButton.innerHTML).toBe("Unmark");
+});
