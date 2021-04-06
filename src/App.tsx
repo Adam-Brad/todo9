@@ -58,10 +58,10 @@ function App() {
         });
     };
 
-    const handleSave = (currentTask: Todo, index: number) => {
+    const handleSave = (currentTodo: Todo, index: number) => {
         const listAfterSave = list.map((todo: Todo, i: number) => {
             if (i === index) {
-                todo.text = currentTask.text;
+                todo.text = currentTodo.text;
             }
             return todo;
         });

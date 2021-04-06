@@ -21,7 +21,7 @@ export default function Item(props: ItemProps) {
 
     const toggleCompleted = () => markCompleted(index);
 
-    const handleEdit = (event: MouseEvent<HTMLButtonElement>) => {
+    const handleEdit = () => {
         setIsEditable(!isEditable);
     }
 
@@ -41,7 +41,7 @@ export default function Item(props: ItemProps) {
     return (
         <>
             {isEditable ?
-                <input data-testid={`${todo.text}-input`} onChange={handleEditChange} value={currentTask.text}/>
+                <input data-testid={`${todo.text}-input`} onChange={handleEditChange} />
             :
                 <li key={index} className={itemClasses}>{todo.text}</li>
             }
