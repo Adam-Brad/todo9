@@ -16,7 +16,7 @@ export default function Item(props: ItemProps) {
     return (
         <>
             <li key={index}>{todo.text}</li>
-            <button onClick={removeFromList}>Delete</button>
+            <button data-testid={`${todo.text}-delete`} onClick={removeFromList}>Delete</button>
         </>
     );
 }
