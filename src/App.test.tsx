@@ -19,3 +19,18 @@ test('adding new todos to the list and input clears', () => {
     expect(getBreadText).toBeInTheDocument();
     expect(inputValue).toBe("");
 });
+
+test('clicking delete button removes correct todo', () => {
+    const { getByText, getByLabelText, queryByText, getByTestId } = render(<App />);
+    const input = getByLabelText("Add a new todo");
+    const addButton = getByText("Click to Add");
+
+    addAToDo(input, "get bread", addButton);
+    const getBreadText = queryByText("get bread");
+    expect(getBreadText).toBeInTheDocument();
+
+    const getBreadDeleteButton = getByTestId("get bread-delete");
+    fireEvent.click(getBreadDeleteButton);
+
+    expect(getBreadText).not.toBeInTheDocument();
+});
