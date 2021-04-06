@@ -48,3 +48,34 @@ test('marking a todo changes the button text', () => {
 
     expect(getBreadMarkButton.innerHTML).toBe("Unmark");
 });
+
+test('edit/save button toggles text', () => {
+    const { getByText, getByLabelText, queryByText, getByTestId } = render(<App />);
+    const input = getByLabelText("Add a new todo");
+    const addButton = getByText("Click to Add");
+
+    addAToDo(input, "get bread", addButton);
+    const getBreadEditButton = getByTestId("get bread-edit");
+    expect(getBreadEditButton.innerHTML).toBe("Edit");
+    fireEvent.click(getBreadEditButton);
+
+    expect(getBreadEditButton.innerHTML).toBe("Save");
+});
+
+test('editing and saving a todo changes the text', () => {
+    const { getByText, getByLabelText, queryByText, getByTestId } = render(<App />);
+    const input = getByLabelText("Add a new todo");
+    const addButton = getByText("Click to Add");
+
+    addAToDo(input, "get bread", addButton);
+    const getBreadEditButton = getByTestId("get bread-edit");
+    fireEvent.click(getBreadEditButton);
+
+    const getBreadEditInput = getByTestId("get bread-input");
+    addAToDo(getBreadEditInput, "get milk", getBreadEditButton);
+    const getMilkText = getByText("get milk");
+    const getBreadText = queryByText("get bread");
+
+    expect(getMilkText).toBeInTheDocument();
+    expect(getBreadText).not.toBeInTheDocument();
+});
