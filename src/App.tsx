@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import './App.css';
-import Input from "./components/Input";
+import Input from "./components/Input/Input";
 import Todo from "./interfaces/Todo";
-import List from "./components/List";
+import List from "./components/List/List";
 
 function App() {
     const [list, setList] = useState<Todo[]>([]);
@@ -20,6 +20,16 @@ function App() {
       setList(listAfterDelete);
     };
 
+    const markCompleted = (index: number) => {
+      const listAfterUpdate: Todo[] = list.map((todo: Todo, i: number) => {
+          if (i === index) {
+              todo.isCompleted = !todo.isCompleted;
+          }
+          return todo;
+      });
+      setList(listAfterUpdate);
+    };
+
     return (
     <div className="App">
       <Input
@@ -28,6 +38,7 @@ function App() {
       <List
         list={list}
         deleteFromList={deleteFromList}
+        markCompleted={markCompleted}
       />
     </div>
   );
