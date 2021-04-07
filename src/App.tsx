@@ -66,6 +66,7 @@ function App() {
             return todo;
         });
         setList(listAfterSave);
+        setCurrentTask({ text: '', isCompleted: false });
     };
 
     return (

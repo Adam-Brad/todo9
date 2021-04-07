@@ -1,4 +1,4 @@
-import React, {useState, MouseEvent, ChangeEvent} from "react";
+import React, {useState, ChangeEvent} from "react";
 import Todo from "../../interfaces/Todo";
 import styles from "./Item.module.css";
 
@@ -26,6 +26,10 @@ export default function Item(props: ItemProps) {
     }
 
     const saveUpdatedTodo = () => {
+        if (!currentTask.text.length) {
+            setIsEditable(false);
+            return;
+        }
         handleSave(currentTask, index);
         setIsEditable(false);
     }
@@ -41,7 +45,9 @@ export default function Item(props: ItemProps) {
     return (
         <>
             {isEditable ?
-                <input data-testid={`${todo.text}-input`} onChange={handleEditChange} />
+                <div>
+                    <input type="text" data-testid={`${todo.text}-input`} onChange={handleEditChange} value={currentTask.text} />
+                </div>
             :
                 <li key={index} className={itemClasses}>{todo.text}</li>
             }
