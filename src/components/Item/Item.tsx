@@ -1,4 +1,4 @@
-import React, {useState, MouseEvent, ChangeEvent} from "react";
+import React, {useState, ChangeEvent} from "react";
 import Todo from "../../interfaces/Todo";
 import styles from "./Item.module.css";
 
@@ -8,8 +8,8 @@ interface ItemProps {
     deleteFromList: (index: number) => void;
     markCompleted: (index: number) => void;
     handleEditChange: (event: ChangeEvent<HTMLInputElement>) => void;
-    currentTask: Todo;
-    handleSave: (currentTask: Todo, index: number) => void;
+    currentTask: string;
+    handleSave: (currentTask: string, index: number) => void;
 }
 
 export default function Item(props: ItemProps) {
@@ -21,7 +21,7 @@ export default function Item(props: ItemProps) {
 
     const toggleCompleted = () => markCompleted(index);
 
-    const handleEdit = (event: MouseEvent<HTMLButtonElement>) => {
+    const handleEdit = () => {
         setIsEditable(!isEditable);
     }
 
@@ -41,7 +41,7 @@ export default function Item(props: ItemProps) {
     return (
         <>
             {isEditable ?
-                <input data-testid={`${todo.text}-input`} onChange={handleEditChange} value={currentTask.text}/>
+                <input data-testid={`${todo.text}-input`} onChange={handleEditChange} value={currentTask}/>
             :
                 <li key={index} className={itemClasses}>{todo.text}</li>
             }

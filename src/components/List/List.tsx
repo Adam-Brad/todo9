@@ -7,8 +7,8 @@ interface ListProps {
     deleteFromList: (index: number) => void;
     markCompleted: (index: number) => void;
     handleEditChange: (event: ChangeEvent<HTMLInputElement>) => void;
-    currentTask: Todo;
-    handleSave: (currentTask: Todo, index: number) => void;
+    currentTask: string;
+    handleSave: (currentTask: string, index: number) => void;
 }
 
 export default function List(props: ListProps) {
@@ -17,6 +17,7 @@ export default function List(props: ListProps) {
 
     const displayedList = list.map((todo: Todo, index: number) => (
         <Item
+            key={index}
             todo={todo}
             index={index}
             deleteFromList={deleteFromList}
