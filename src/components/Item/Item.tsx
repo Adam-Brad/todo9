@@ -5,6 +5,7 @@ import styles from "./Item.module.css";
 interface ItemProps {
     todo: Todo;
     index: number;
+    key: string;
     deleteFromList: (index: number) => void;
     markCompleted: (index: number) => void;
     handleEditChange: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -43,7 +44,7 @@ export default function Item(props: ItemProps) {
             {isEditable ?
                 <input data-testid={`${todo.text}-input`} onChange={handleEditChange} value={currentTask}/>
             :
-                <li key={index} className={itemClasses}>{todo.text}</li>
+                <li className={itemClasses}>{todo.text}</li>
             }
 
             <button data-testid={`${todo.text}-delete`} onClick={removeFromList}>Delete</button>

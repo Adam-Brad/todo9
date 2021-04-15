@@ -17,7 +17,7 @@ export default function List(props: ListProps) {
 
     const displayedList = list.map((todo: Todo, index: number) => (
         <Item
-            key={index}
+            key={todo.id}
             todo={todo}
             index={index}
             deleteFromList={deleteFromList}
