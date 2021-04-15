@@ -43,6 +43,7 @@ export default function Item(props: ItemProps) {
         <>
             {isEditable ?
                 <input data-testid={`${todo.text}-input`} onChange={handleEditChange} value={currentTask}/>
+
             :
                 <li className={itemClasses}>{todo.text}</li>
             }

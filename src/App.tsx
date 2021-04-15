@@ -58,6 +58,7 @@ function App() {
         const listAfterSave = list.map((todo: Todo, i: number) => {
             if (i === index) {
                 todo.text = task;
+
             }
             return todo;
         });
