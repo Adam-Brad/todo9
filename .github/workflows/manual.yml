@@ -1,0 +1,20 @@
+# This is a basic workflow that is manually triggered
+
+name: Manual Deploy
+
+on:
+  workflow_dispatch:
+
+jobs:
+
+  build:
+    runs-on: ${{ matrix.os }} # runs a test on Ubuntu, Windows and macOS
+    
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Deploy
+        run: npm run build

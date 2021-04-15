@@ -3,13 +3,11 @@ import './App.css';
 import Input from "./components/Input/Input";
 import Todo from "./interfaces/Todo";
 import List from "./components/List/List";
+import { v4 as uuidv4 } from 'uuid';
 
 function App() {
     const [list, setList] = useState<Todo[]>([]);
-    const [currentTask, setCurrentTask] = useState<Todo>({
-        text: '',
-        isCompleted: false
-    });
+    const [currentTask, setCurrentTask] = useState<string>('');
 
     const addToList = (task: string) => {
         if (!task.length) {
@@ -31,7 +29,8 @@ function App() {
 
         const additionalTodo: Todo = {
             text: task,
-            isCompleted: false
+            isCompleted: false,
+            id: uuidv4()
         };
         setList([additionalTodo, ...list])
     };
@@ -52,16 +51,14 @@ function App() {
     };
 
     const handleEditChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setCurrentTask({
-            text: event.target.value,
-            isCompleted: false
-        });
+        setCurrentTask(event.target.value);
     };
 
-    const handleSave = (currentTask: Todo, index: number) => {
+    const handleSave = (task: string, index: number) => {
         const listAfterSave = list.map((todo: Todo, i: number) => {
             if (i === index) {
-                todo.text = currentTask.text;
+                todo.text = task;
+
             }
             return todo;
         });
