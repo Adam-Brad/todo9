@@ -102,4 +102,3 @@ test('adding a duplicate todo throws error', () => {
 
     expect(window.alert).toHaveBeenCalledTimes(1);
 });
-
