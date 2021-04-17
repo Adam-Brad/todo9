@@ -67,7 +67,7 @@ function App() {
 
     return (
     <div className="App">
-        <h1>Typescript Todo #9</h1>
+        <h1>Typescript Todo #9 Deploy</h1>
       <Input
           addToList={addToList}
       />
